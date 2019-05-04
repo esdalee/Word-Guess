@@ -8,7 +8,17 @@ function randomWord(array) {
     var randomWord = array[Math.floor(Math.random() * array.length)];
 }
 
-function isCorrectGuess("argument 1", "argument 2") {
+function isCorrectGuess("randomWord", guessedLetter) {
 
+    for (var i = 0; i < randomWord.length; i++) {
+        if(randomWord[i] === guessedLetter) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
 
+function getBlanks(word) {
+    
 }
