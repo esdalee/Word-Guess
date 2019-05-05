@@ -1,6 +1,8 @@
 
+// Logic Pt 1 - Utility Functions
+
 // 1.0 List of words to guess
-var gameWords = ["ironman", "captainamerica", "thor", "thehulk", "blackwidow", "hawkeye"];
+var gameWords = ["ironman", "captainamerica", "thor", "thehulk", "blackwidow", "hawkeye", "captainmarvel", "tesseract", "nickfury"];
 
 // 1.1 Picks random word from gamewords
 function randomWord(gameWords) {
@@ -38,4 +40,35 @@ function fillBlanks(randomizedWord, currentPuzzle, guessedLetter) {
         return currentPuzzle;
     }
 }
+
+// Logic Pt 2 - Game Mangement Functions
+
+// 1.5 Create "round" object
+
+function setupRound(randomizedWord) {
+
+    var newRound = {
+        word: randomizedWord,
+        guessesLeft: 9,
+        wrongGuesses: [],
+        puzzleState: getBlanks(word)
+    };
+
+    return newRound;
+}
+
+// 1.6 Update the round
+function updateRound(newRound, guessedLetter) {
+    
+    if (isCorrectGuess (newRound.word, guessedLetter) === false) {
+        newRound.guessesLeft--;
+        newRound.wrongGuesses.push(guessedLetter);
+    }
+    else {
+        fillBlanks(newRound.word, newRound.puzzleState, guessedLetter)
+    }
+}
+
+// 1.7 Check if round has been won
+
 
