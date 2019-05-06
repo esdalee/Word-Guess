@@ -2,7 +2,7 @@
 // Logic Pt 1 - Utility Functions
 
 // 1.0 List of words to guess
-var gameWords = ["ironman", "captainamerica", "thor", "thehulk", "blackwidow", "hawkeye", "captainmarvel", "tesseract", "nickfury"];
+var gameWords = ["ironman", "captainamerica", "thor", "thehulk", "blackwidow", "hawkeye", "captainmarvel", "tesseract", "nickfury", "blackpanther","antman", "spiderman", "groot", "starlord","thanos","gamora", "rocket","agentcoulson", "nebula","okoye", "shuri", "vision", "scarletwitch", "loki"];
 
 // 1.1 Picks random word from gamewords
 function randomWord(gameWords) {
@@ -47,28 +47,70 @@ function fillBlanks(randomizedWord, currentPuzzle, guessedLetter) {
 
 function setupRound(randomizedWord) {
 
-    var newRound = {
+    var round = {
         word: randomizedWord,
         guessesLeft: 9,
         wrongGuesses: [],
         puzzleState: getBlanks(word)
     };
 
-    return newRound;
+    return round;
 }
 
 // 1.6 Update the round
-function updateRound(newRound, guessedLetter) {
+function updateRound(round, guessedLetter) {
     
-    if (isCorrectGuess (newRound.word, guessedLetter) === false) {
-        newRound.guessesLeft--;
-        newRound.wrongGuesses.push(guessedLetter);
+    if (isCorrectGuess (round.word, guessedLetter) === false) {
+        round.guessesLeft--;
+        round.wrongGuesses.push(guessedLetter);
     }
     else {
-        fillBlanks(newRound.word, newRound.puzzleState, guessedLetter)
+        fillBlanks(round.word, round.puzzleState, guessedLetter);
     }
 }
 
-// 1.7 Check if round has been won
+// 1.7 Check if round is won
+function hasWon(puzzleState) {
+    // Round is won if there are no more blanks
+    for (var i = 0; i < puzzleState.length; i++) {
+        if (puzzleState[i] === "_") {
+            return false;
+        }
+    }
+    return true;
+}
 
+// 1.8 Check if round is lost
+function hasLost (guessesLeft) {
+    // Round is lost if number of guesses hits 0
+    if (guessesLeft === 0) {
+        return true;
+    }
+    return false;
+}
 
+// 1.9 Check if the round is over
+function isEndOfRound (round) {
+    // New round if user lost
+    if (hasLost(round.guessesLeft)) {
+        return true;
+    }
+    // New round if user won
+    if (hasWon(round.puzzleState)) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
+// 1.10 Create "game" object
+function setupGame (gameWords, wins, losses) {
+    var game = {
+        words: gameWords,
+        wins: wins,
+        losses: losses,
+        round: setupRound(randomizedWord)
+    }
+    return game;
+}
