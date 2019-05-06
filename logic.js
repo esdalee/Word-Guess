@@ -104,7 +104,7 @@ function isEndOfRound (round) {
     }
 }
 
-// 1.10 Create "game" object
+// 1.10 Set up game - create "game" object
 function setupGame (gameWords, wins, losses) {
     var game = {
         words: gameWords,
@@ -114,3 +114,19 @@ function setupGame (gameWords, wins, losses) {
     }
     return game;
 }
+
+// 1.11 Start a new round
+function startNewRound (game) {
+    if (hasWon(game.round.puzzleState) === true) {
+        game.wins++;
+        alert("GREAT JOB! The word was " + game.round.word + "! Whoohoo!");
+    }
+    else {
+        game.losses++;
+        alert("Wrong! The word was " + game.round.word + "! Try again...");
+    }
+    return game;
+}
+
+// 1.12 Setting global variable
+var myGame = setupGame(gameWords, 0, 0);
