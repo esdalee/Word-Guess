@@ -2,26 +2,25 @@
 // Logic Pt 1 - Utility Functions
 
 // 1.0 List of words to guess
-var gameWords = ["ironman", "captainamerica", "thor", "thehulk", "blackwidow", "hawkeye", "captainmarvel", "tesseract", "nickfury", "blackpanther","antman", "spiderman", "groot", "starlord","thanos","gamora", "rocket","agentcoulson", "nebula","okoye", "shuri", "vision", "scarletwitch", "loki"];
+var gameWords = ["ironman", "captainamerica", "thor", "thehulk", "blackwidow", "hawkeye", "captainmarvel", "tesseract", "nickfury", "blackpanther","antman", "spiderman", "groot", "starlord", "thanos", "gamora", "rocket", "agentcoulson", "agentcarter", "nebula", "okoye", "shuri", "vision", "scarletwitch", "loki"];
 
 // 1.1 Picks random word from gamewords
 function randomWord(gameWords) {
-    var randomizedWord = gameWords[Math.floor(Math.random() * array.length - 1)];
+    var randomizedWord = gameWords[Math.floor(Math.random() * gameWords.length)];
     return randomizedWord;
 }
 
 // 1.2 Takes in word and letter, checks if letter is in the word
 function isCorrectGuess(randomizedWord, guessedLetter) {
 
-    for (var i = 0; i < randomWord.length; i++) {
+    for (var i = 0; i < randomizedWord.length; i++) {
         if(randomizedWord[i] === guessedLetter) {
             return true;
-        }
-        else {
-            return false;
-        }
+        }    
     }
+    return false;
 }
+
 // 1.3 Generate same amount of blanks as word
 function getBlanks(randomizedWord) {
     var blanks = [];
@@ -51,7 +50,7 @@ function setupRound(randomizedWord) {
         word: randomizedWord,
         guessesLeft: 9,
         wrongGuesses: [],
-        puzzleState: getBlanks(word)
+        puzzleState: []
     }
 
     return round;
@@ -110,9 +109,9 @@ function setupGame (gameWords, wins, losses) {
         words: gameWords,
         wins: wins,
         losses: losses,
-        round: setupRound(randomizedWord)
+        round: setupRound(gameWords) // **don't understand
     }
-    return game;
+    return setupRound(gameWords); // **don't understand
 }
 
 // 1.11 Start a new round
