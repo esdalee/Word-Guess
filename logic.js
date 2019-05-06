@@ -37,8 +37,8 @@ function fillBlanks(randomizedWord, currentPuzzle, guessedLetter) {
         if (randomizedWord[i] === guessedLetter) {
             currentPuzzle[i] = guessedLetter;
         }
-        return currentPuzzle;
     }
+    return currentPuzzle;
 }
 
 // Logic Pt 2 - Game Mangement Functions
@@ -52,7 +52,7 @@ function setupRound(randomizedWord) {
         guessesLeft: 9,
         wrongGuesses: [],
         puzzleState: getBlanks(word)
-    };
+    }
 
     return round;
 }
