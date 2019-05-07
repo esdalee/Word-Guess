@@ -160,13 +160,13 @@ document.addEventListener("keydown", function(event) {
 // Initialize game
 
 // Listen then run once key is down
-document.addEventListener("keydown", playGame);
+document.addEventListener("keydown", function(event) {
+    var letter = event.key.toLowerCase();
+    var word = randomWord(gameWords);
+    var correctGuess = 
 
-// This function is ran once user hits key
+});
 
-function playGame() {
-    // Run game
-}
 
 
 // Update the web page based on the guessed letter. 
