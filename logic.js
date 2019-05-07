@@ -139,7 +139,35 @@ var myGame = setupGame(gameWords, 0, 0);
 
 // Handle input, keep track of user's progress, update page
 
+const input = document.querySelector('input');
+const log = document.getElementById('log');
+input.onkeydown = logKey;
+
 // Key events to listen for the letters that your players will type.
+
+document.addEventListener("keydown", function(event) {
+    var letter = event.key.toLowerCase();
+    var word = randomWord(gameWords);
+    var correctGuess = updateRound(game.round, letter)
+        if (letter === word) {
+            return correctGuess;
+            isEndOfRound(game.round.word);
+        }
+    return false;
+    }
+)
+
+// Initialize game
+
+// Listen then run once key is down
+document.addEventListener("keydown", playGame);
+
+// This function is ran once user hits key
+
+function playGame() {
+    // Run game
+}
+
 
 // Update the web page based on the guessed letter. 
 
