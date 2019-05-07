@@ -129,3 +129,22 @@ function startNewRound (game) {
 
 // 1.12 Setting global variable
 var myGame = setupGame(gameWords, 0, 0);
+
+
+////////////////////////////////////////////
+
+// Part 3 - Connecting web page & functions
+
+// Set up
+
+// Handle input, keep track of user's progress, update page
+
+// Key events to listen for the letters that your players will type.
+
+// Update the web page based on the guessed letter. 
+
+// Includes updating the word/blanks on the page, the number of wins, losses, guesses remaining, and incorrect guesses so far.
+
+// After user wins/loses, game should alert, automatically choose another word, update page, and allow user to immediately play it
+
+// You can (and probably should) use some of the functions and variables you've defined up to this point.
