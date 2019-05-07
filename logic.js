@@ -109,9 +109,9 @@ function setupGame (gameWords, wins, losses) {
         words: gameWords,
         wins: wins,
         losses: losses,
-        round: setupRound(gameWords) // **don't understand
+        round: setupRound(randomWord(gameWords)) 
     }
-    return setupRound(gameWords); // **don't understand
+    return game;
 }
 
 // 1.11 Start a new round
