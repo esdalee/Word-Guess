@@ -31,13 +31,13 @@ function getBlanks(randomizedWord) {
 }
 
 // 1.4 Fill a blanks array with guessed letter
-function fillBlanks(randomizedWord, currentPuzzle, guessedLetter) {
+function fillBlanks(randomizedWord, puzzleState, guessedLetter) {
     for (var i = 0; i < randomizedWord.length; i++) {
         if (randomizedWord[i] === guessedLetter) {
-            currentPuzzle[i] = guessedLetter;
+            puzzleState[i] = guessedLetter;
         }
     }
-    return currentPuzzle;
+    return puzzleState;
 }
 
 // Logic Pt 2 - Game Mangement Functions
@@ -50,7 +50,7 @@ function setupRound(randomizedWord) {
         word: randomizedWord,
         guessesLeft: 9,
         wrongGuesses: [],
-        puzzleState: []
+        puzzleState: getBlanks(randomizedWord)
     }
 
     return round;
@@ -66,6 +66,7 @@ function updateRound(round, guessedLetter) {
     else {
         fillBlanks(round.word, round.puzzleState, guessedLetter);
     }
+    return round;
 }
 
 // 1.7 Check if round is won
@@ -136,36 +137,22 @@ var myGame = setupGame(gameWords, 0, 0);
 // Part 3 - Connecting web page & functions
 
 // Set up
+var puzzle = document.getElementById("puzzle-state");
+puzzle.innerHTML = myGame.round.puzzleState.join("");
 
-// Handle input, keep track of user's progress, update page
+// Whne user presses key
+document.onkeyup = function(click) {
+    guessedLetter = click.key.toLowerCase();
+    randomizedWord = randomWord(gameWords);
+    isCorrectGuess(randomizedWord, guessedLetter);
+    fillBlanks(randomizedWord, myGame.round.puzzleState, guessedLetter);
+    updateRound(randomizedWord);
+    hasWon(myGame.round.puzzleState);
+    hasLost(myGame.round.puzzleState);
 
-const input = document.querySelector('input');
-const log = document.getElementById('log');
-input.onkeydown = logKey;
-
-// Key events to listen for the letters that your players will type.
-
-document.addEventListener("keydown", function(event) {
-    var letter = event.key.toLowerCase();
-    var word = randomWord(gameWords);
-    var correctGuess = updateRound(game.round, letter)
-        if (letter === word) {
-            return correctGuess;
-            isEndOfRound(game.round.word);
-        }
-    return false;
-    }
-)
-
-// Initialize game
-
-// Listen then run once key is down
-document.addEventListener("keydown", function(event) {
-    var letter = event.key.toLowerCase();
-    var word = randomWord(gameWords);
-    var correctGuess = 
-
-});
+    // if statement
+    
+};
 
 
 
