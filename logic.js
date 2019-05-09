@@ -25,7 +25,7 @@ function isCorrectGuess(randomizedWord, guessedLetter) {
 function getBlanks(randomizedWord) {
     var blanks = [];
     for (var i=0; i<randomizedWord.length; i++) {
-        blanks.push("_");
+        blanks[i] = "_";
     }
     return blanks;
 }
@@ -135,31 +135,30 @@ var myGame = setupGame(gameWords, 0, 0);
 ////////////////////////////////////////////
 
 // Part 3 - Connecting web page & functions
-
-// Set up
-var puzzle = document.getElementById("puzzle-state");
-puzzle.innerHTML = myGame.round.puzzleState.join("");
+document.getElementById("puzzle-state").innerText = myGame.round.puzzleState.join(" ");
+document.getElementById("wrong-guesses").innerText = myGame.round.wrongGuesses;
+document.getElementById("guesses-left").innerText = myGame.round.guessesLeft;
+document.getElementById("win-counter").innerText = myGame.wins;
+document.getElementById("loss-counter").innerText = myGame.losses;
 
 // Whne user presses key
 document.onkeyup = function(click) {
     guessedLetter = click.key.toLowerCase();
-    randomizedWord = randomWord(gameWords);
-    isCorrectGuess(randomizedWord, guessedLetter);
-    fillBlanks(randomizedWord, myGame.round.puzzleState, guessedLetter);
-    updateRound(randomizedWord);
-    hasWon(myGame.round.puzzleState);
-    hasLost(myGame.round.puzzleState);
-
-    // if statement
+    updateRound(myGame.round, guessedLetter);
     
+    // If end of round, start new one
+    if (isEndOfRound(myGame.round)) {
+        myGame = startNewRound(myGame);
+        myGame.round = setupRound(randomWord(gameWords));
+    }
+
+    document.getElementById("puzzle-state").innerText = myGame.round.puzzleState.join(" ");
+
+    document.getElementById("wrong-guesses").innerText = myGame.round.wrongGuesses;
+
+    document.getElementById("guesses-left").innerText = myGame.round.guessesLeft;
+
+    document.getElementById("win-counter").innerText = myGame.wins;
+
+    document.getElementById("loss-counter").innerText = myGame.losses;
 };
-
-
-
-// Update the web page based on the guessed letter. 
-
-// Includes updating the word/blanks on the page, the number of wins, losses, guesses remaining, and incorrect guesses so far.
-
-// After user wins/loses, game should alert, automatically choose another word, update page, and allow user to immediately play it
-
-// You can (and probably should) use some of the functions and variables you've defined up to this point.

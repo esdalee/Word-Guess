@@ -5,12 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
     <title>Avengers Word Guess</title>
 </head>
 <body>
-
+    <div class="main">
     <header class="container">
-        <img src="avengers.png" alt="Avengers logo" height="200" width="500">
+        <img src="avengers.svg" alt="Avengers logo" height="200" width="500">
         <h1>Guess THAT word</h1>
         <br><br>
     </header>
@@ -23,17 +24,14 @@
             </div></div>
             <div class="col px-md-5"><div class="p-3 border bg light">
                 <h2>Counters</h2>
-                <div id="wrong-guesses">Wrong Guesses</div>
-                <div id="guesses-left">Remaining Guesses</div>
-                <div id="win-counter"># of Wins</div>
-                <div id="loss-counter"># of Losses</div>
+                <p>Wrong Guesses: <span id="wrong-guesses"></span></p>
+                <p>Remaining Guesses: <span id="guesses-left"></span></p>
+                <p># Wins: <span id="win-counter"></span></p>
+                <p># of Losses: <span id="loss-counter"></span></p>
             </div></div>
         </div>
     </div>
-
-
-
-
+</div>
 <script src="logic.js" charset="UTF-8"></script>
 
 </body>

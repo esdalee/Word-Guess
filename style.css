@@ -1,0 +1,9 @@
+
+.main {
+    background-image: url("Background.jpg");
+    opacity: 0.7;
+    color: white;
+    background-size: cover;
+    padding-bottom: 120px;
+    font-size: 25px;
+}
